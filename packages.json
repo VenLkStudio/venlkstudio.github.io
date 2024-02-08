@@ -1,7 +1,10 @@
 {
-    "testPackage":
+    "Packages": [    
         {
-        "version": 0.1,
-        "needPackages":["Test", "Test2"]
+            "testPackage": {
+                "version": 0.1,
+                "needPackages": ["Test", "Test2"]
+            }
         }
+    ]
 }
