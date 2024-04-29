@@ -20,6 +20,9 @@ header{
     font-family: jetbrainsmedium;
     color: white;
 }
+h2{
+    color: black;
+}
 @font-face {
     font-family: 'jetbrainsmedium';
     src: url('font.ttf') format('truetype');
