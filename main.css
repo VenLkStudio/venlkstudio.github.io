@@ -18,6 +18,7 @@ header{
 }
 .menu a{
     font-family: jetbrainsmedium;
+    color: white;
 }
 @font-face {
     font-family: 'jetbrainsmedium';
