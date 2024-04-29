@@ -16,3 +16,10 @@ header{
 .menu li{
     display: inline-block;
 }
+.menu a{
+    font-family: jetbrainsmedium;
+}
+@font-face {
+    font-family: 'jetbrainsmedium';
+    src: url('font.ttf') format('truetype');
+}
