@@ -1,29 +1,75 @@
-*{
+* {
     margin: 0;
     padding: 0;
+    font-family: 'jetbrainsmedium';
 }
-body{
-    background: black;
-    color: White;
+
+body {
+    background: #222123;
+    margin: 0; 
 }
-header{
+
+.menu {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100%; 
 }
-.menu{
-    display: inline-block;
+
+.wrapper {
+    background: #2d2e30;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100px; 
+    height: 100%; 
+    padding: 20px 0;
+    transition: all 0.5s ease;
 }
-.menu li{
-    display: inline-block;
+
+.menu ul {
+    list-style-type: none;
+    margin-bottom: auto; 
 }
-.menu a{
-    font-family: jetbrainsmedium;
+
+.menu li {
+    margin-bottom: 20px; 
+}
+
+.menu a {
+    font-family: oxygen;
     color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
 }
-h2{
-    color: black;
+
+.menu a span {
+    margin-top: 5px; 
 }
+
+.menu a:hover {
+    color: beige;
+}
+
+.main {
+    position:fixed;
+    z-index:1000;
+    height:500px;
+    width:500px;
+    right: 0px;
+}
+.main h1 {
+    color: aliceblue;
+}
+
 @font-face {
     font-family: 'jetbrainsmedium';
-    src: url('font.ttf') format('truetype');
+    src: url('fonts/jetbrains.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "oxygen";
+    src: url('fonts/oxygen.ttf') format('truetype');
 }
