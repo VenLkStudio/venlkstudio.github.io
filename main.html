@@ -7,20 +7,42 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@500" rel="stylesheet" />
-    <script src='main.js'></script>
 </head>
 <body>
     <div class="wrapper">
         <div class="menu">
             <ul>
-                <li><a href="#"><i class="material-symbols-outlined">home</i> <span>Home</span></a></li>
-                <li><a href="#"><i class="material-symbols-outlined">folder</i> <span>Projects</span></a></li>
+                <li><a href="#" id="home"><i class="material-symbols-outlined">home</i> <span>Home</span></a></li>
+                <li><a href="#" id="projects"><i class="material-symbols-outlined">folder</i> <span>Projects</span></a></li>
                 <li><a href="https://t.me/dopystim_ladno"> <img src="icons/telegram_icon.png" width="25"> <span>Telegram</span></a></li>
             </ul>
         </div>
     </div>
-    <div class="main">
+    <div class="main" id="main">
         <h1>я не знаю что написать на главной странице поэтому здесь будет это</h1>
     </div>
+    <div class="projects-page" id="projectsPage">
+        <!-- <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search...">
+        </div> -->
+        <div class="search-bar-list">
+            <input type="text" id="searchInput" placeholder="Поиск...">
+        </div>             
+        <div id="projects-list" class="projects-list">
+            <article>
+                <h2>Yuio Video Downloader</h2>
+                <p>Program for downloading videos from various sites *IN DEVELOPMENT*</p>
+            </article>
+            <article>
+                <h2>YuioAssistant</h2>
+                <p>Voice Assistant *Development Temporarily Suspended*</p>
+            </article>
+            <article>
+                <h2>Cartoonify AI</h2>
+                <p>An AI that creates cartoons</p>
+            </article>
+        </div>        
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
