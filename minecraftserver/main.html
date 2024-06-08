@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Minecraft Server</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@500" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="menu">
+            <ul>
+                <li><a href="#" id="news"><i class="material-symbols-outlined">newsmode</i> <span>Новости</span></a></li>
+                <li><a href="#" id="pictures"><i class="material-symbols-outlined">imagesmode</i> <span>Картинки</span></a></li>
+                <li><a href="#" id="guides"><i class="material-symbols-outlined">developer_guide</i><span>Гайды</span></a></li>
+                <li><a href="#" id="help"><i class="material-symbols-outlined">help</i><span>Помощь</span></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="newspage" id="newspage">
+        <h1>Новости:</h1>
+        <div class="news-container" id="news-container">
+        </div>
+    </div>
+    <div class="admin-panel" id="admin-panel">
+        <div class="admin-header" id="admin-header">
+            <h2>Admin Panel</h2>
+            <button id="closeAdminPanel" class="close-btn">X</button>
+        </div>
+        <form id="newsForm">
+            <label for="newsTitle">Title:</label>
+            <input type="text" id="newsTitle" name="newsTitle" required><br>
+            <label for="newsContent">Content:</label>
+            <textarea id="newsContent" name="newsContent" required></textarea><br>
+            <button type="submit">Post News</button>
+        </form>
+    </div>
+    <div class="click-area" id="click-area"></div>
+    <div class="picturespage" id="picturespage">
+        <h1>В разработке</h1>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

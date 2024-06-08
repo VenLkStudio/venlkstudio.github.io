@@ -9,6 +9,11 @@ body {
     margin: 0; 
 }
 
+.picturespage {
+    opacity: 0;
+    transform: translateY(100%);
+}
+
 .menu {
     display: flex;
     justify-content: center;
@@ -73,7 +78,7 @@ body {
     position: relative;
 }
 
-.main, .projects-page {
+.newspage, .picturespage {
     position: fixed;
     z-index: 1000;
     top: 0;
@@ -84,13 +89,20 @@ body {
     transition: opacity 0.5s, transform 0.5s;
 }
 
-.projects-page {
-    opacity: 0;
-    transform: translateY(100%);
+.newspage p {
+    color: #a7a7a7;
 }
 
-.projects-page h1 {
-    color: aliceblue;
+.picturespage h1 {
+    color: #e7e7e7;
+    margin-left: 10px;
+}
+
+.newspage h1,
+.newspage h2,
+.newspage h3 {
+    color: #e7e7e7;
+    margin-left: 10px;
 }
 
 .menu a:active::before {
@@ -124,6 +136,88 @@ body {
     background: #2d2e30;
     outline: none;
     width: 200px;
+}
+
+.admin-panel {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2d2e30;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    cursor: move;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: grab;
+}
+
+.admin-panel .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.click-area {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0);
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.news-container article {
+    background: #3b3b3b;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.news-container h2, .news-container p {
+    margin: 0 0 10px 0;
+    color: #e7e7e7;
+}
+
+.news-container time {
+    font-size: 12px;
+    color: #a7a7a7;
+}
+
+.news-container .admin-controls {
+    display: none;
+    align-items: center;
+    gap: 10px;
+}
+
+.news-container .admin-controls .edit-btn,
+.news-container .admin-controls .delete-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+}
+
+.news-container .admin-controls .edit-btn:hover,
+.news-container .admin-controls .delete-btn:hover {
+    color: red;
 }
 
 .projects-list {
@@ -191,7 +285,6 @@ body {
     text-align: center;
 }
 
-/* Next & previous buttons */
 .prev, .next {
     cursor: pointer;
     position: absolute;
@@ -232,8 +325,6 @@ body {
     left: auto;
 }
 
-
-/* Стили для точек */
 .dot-container {
     text-align: center; /* Выравнивание по центру */
     position: absolute;
@@ -255,12 +346,10 @@ body {
     background-color: #717171; /* Цвет активной точки */
 }
 
-
 .projects-list.show-not-found .not-found {
     display: block;
 }
 
-/* Стили для левого прямоугольника */
 .left-rectangle {
     position: fixed;
     top: 0;
@@ -270,7 +359,6 @@ body {
     background-color: transparent; /* Без цвета */
 }
 
-/* Стили для правого прямоугольника */
 .right-rectangle {
     position: fixed;
     top: 0;
@@ -280,7 +368,6 @@ body {
     background-color: transparent; /* Без цвета */
 }
 
-/* Стили для кнопок */
 .prev, .next {
     position: absolute;
     top: 50%;
@@ -296,16 +383,13 @@ body {
     background-color: rgba(0, 0, 0, 0.5); /* Цвет кнопок */
 }
 
-/* Стили для кнопки "назад" */
 .prev {
     left: 10px; /* Располагается слева */
 }
 
-/* Стили для кнопки "вперед" */
 .next {
     right: 10px; /* Располагается справа */
 }
-
 
 .search-bar-list {
     box-shadow: 3px 4px 10px 0px rgba(0,0,0,0.3);
