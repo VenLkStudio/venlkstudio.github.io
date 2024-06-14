@@ -9,6 +9,13 @@ body {
     margin: 0; 
 }
 
+@media screen and (max-width: 500px) {
+  .projects-list article img {
+    visibility: hidden;
+    display: none;
+  }
+}
+
 .menu {
     display: flex;
     justify-content: center;
