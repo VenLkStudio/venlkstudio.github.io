@@ -6,15 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
 	let isAdmin = false
 
 	// Firebase configuration
+	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 	const firebaseConfig = {
-		apiKey: 'AIzaSyA8k-YsNCppdkGjEjS11374ujdR4FV2Kno',
-		authDomain: 'yuio-538fb.firebaseapp.com',
-		databaseURL: 'https://yuio-538fb-default-rtdb.firebaseio.com',
-		projectId: 'yuio-538fb',
-		storageBucket: 'yuio-538fb.appspot.com',
-		messagingSenderId: '657359308713',
-		appId: '1:657359308713:web:3e4dacc0660c5862e866b8',
-		measurementId: 'G-89985EVK9S',
+		apiKey: 'AIzaSyAafBwSveY6eZrDBZw4BVMaFTHuy2RfaCA',
+		authDomain: 'yesserver-7ea61.firebaseapp.com',
+		databaseURL:
+			'https://yesserver-7ea61-default-rtdb.europe-west1.firebasedatabase.app',
+		projectId: 'yesserver-7ea61',
+		storageBucket: 'yesserver-7ea61.appspot.com',
+		messagingSenderId: '1081353241153',
+		appId: '1:1081353241153:web:3717856f9092b27436fcc0',
+		measurementId: 'G-5DLG8H7CYY',
 	}
 
 	// Initialize Firebase
@@ -80,17 +82,21 @@ document.addEventListener('DOMContentLoaded', () => {
 		})
 	}
 
-	function showPage(pageToShow, pageToHide1, pageToHide2) {
+	function showPage(pageToShow, pageToHide1, pageToHide2, pageToHide3) {
 		pageToHide1.classList.add('fade-out')
 		pageToHide1.classList.remove('fade-in')
 		pageToHide2.classList.add('fade-out')
 		pageToHide2.classList.remove('fade-in')
+		pageToHide3.classList.remove('fade-out')
+		pageToHide3.classList.remove('fade-in')
 
 		setTimeout(() => {
 			pageToHide1.style.display = 'none'
 			pageToHide1.classList.remove('fade-out')
 			pageToHide2.style.display = 'none'
 			pageToHide2.classList.remove('fade-out')
+			pageToHide3.style.display = 'none'
+			pageToHide3.classList.remove('fade-out')
 
 			pageToShow.style.display = 'block'
 			setTimeout(() => {
@@ -102,14 +108,16 @@ document.addEventListener('DOMContentLoaded', () => {
 	const guidesButton = document.getElementById('guides')
 	const newsButton = document.getElementById('news')
 	const helpButton = document.getElementById('help')
+	const downloadButton = document.getElementById('download')
 
 	if (guidesButton) {
 		guidesButton.addEventListener('click', () => {
 			const guidespage = document.querySelector('.guidespage')
 			const helppage = document.querySelector('.helppage')
 			const newspage = document.querySelector('.newspage')
+			const downloadpage = document.querySelector('.downloadpage')
 
-			showPage(guidespage, helppage, newspage)
+			showPage(guidespage, helppage, newspage, downloadpage)
 			loadGuides()
 		})
 	}
@@ -119,8 +127,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			const helppage = document.querySelector('.helppage')
 			const guidespage = document.querySelector('.guidespage')
 			const newspage = document.querySelector('.newspage')
+			const downloadpage = document.querySelector('.downloadpage')
 
-			showPage(newspage, guidespage, helppage)
+			showPage(newspage, guidespage, helppage, downloadpage)
 		})
 	}
 
@@ -129,8 +138,20 @@ document.addEventListener('DOMContentLoaded', () => {
 			const helppage = document.querySelector('.helppage')
 			const guidespage = document.querySelector('.guidespage')
 			const newspage = document.querySelector('.newspage')
+			const downloadpage = document.querySelector('.downloadpage')
 
-			showPage(helppage, guidespage, newspage)
+			showPage(helppage, guidespage, newspage, downloadpage)
+		})
+	}
+
+	if (downloadButton) {
+		downloadButton.addEventListener('click', () => {
+			const helppage = document.querySelector('.helppage')
+			const guidespage = document.querySelector('.guidespage')
+			const newspage = document.querySelector('.newspage')
+			const downloadpage = document.querySelector('.downloadpage')
+
+			showPage(downloadpage, helppage, guidespage, newspage)
 		})
 	}
 
