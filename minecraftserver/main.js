@@ -1,128 +1,139 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const newsForm = document.getElementById('newsForm');
-    const newsContainer = document.getElementById('news-container');
-    const adminPanel = document.getElementById('admin-panel');
-    const adminHeader = document.getElementById('admin-header');
-    const clickArea = document.getElementById('click-area');
-    const closeAdminPanel = document.getElementById('closeAdminPanel');
-    let isAdmin = false;
+	const newsContainer = document.getElementById('news-container')
+	const guidesContainer = document.getElementById('guides-container')
+	const clickArea = document.getElementById('click-area')
+	const newspage = document.getElementById('newspage')
+	let isAdmin = false
 
-    function loadNews() {
-        const news = JSON.parse(localStorage.getItem('news')) || [];
-        newsContainer.innerHTML = '';
-        news.reverse().forEach((article, index) => {
-            const newsArticle = document.createElement('article');
-            newsArticle.innerHTML = `
-                <div>
-                    <h2>${article.title}</h2>
-                    <p>${article.content}</p>
-                    <time>${new Date(article.date).toLocaleString()}</time>
-                </div>
-                <div class="admin-controls">
-                    <button class="edit-btn" data-index="${index}">✏️</button>
-                    <button class="delete-btn" data-index="${index}">🗑️</button>
-                </div>
-            `;
-            newsContainer.appendChild(newsArticle);
-        });
-        toggleAdminControls();
-    }
+	// Firebase configuration
+	const firebaseConfig = {
+		apiKey: 'AIzaSyA8k-YsNCppdkGjEjS11374ujdR4FV2Kno',
+		authDomain: 'yuio-538fb.firebaseapp.com',
+		databaseURL: 'https://yuio-538fb-default-rtdb.firebaseio.com',
+		projectId: 'yuio-538fb',
+		storageBucket: 'yuio-538fb.appspot.com',
+		messagingSenderId: '657359308713',
+		appId: '1:657359308713:web:3e4dacc0660c5862e866b8',
+		measurementId: 'G-89985EVK9S',
+	}
 
-    newsForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const newsTitle = document.getElementById('newsTitle').value;
-        const newsContent = document.getElementById('newsContent').value;
-        const news = JSON.parse(localStorage.getItem('news')) || [];
-        news.push({ title: newsTitle, content: newsContent, date: new Date() });
-        localStorage.setItem('news', JSON.stringify(news));
-        loadNews();
-        newsForm.reset();
-    });
+	// Initialize Firebase
+	firebase.initializeApp(firebaseConfig)
+	const db = firebase.database()
 
-    clickArea.addEventListener('click', () => {
-        const code = prompt("Введите код:");
-        if (code === "14887776665269") {
-            isAdmin = true;
-            adminPanel.style.display = 'block';
-            toggleAdminControls();
-        }
-    });
+	function loadNews() {
+		db.ref('news')
+			.orderByChild('date')
+			.once('value')
+			.then(snapshot => {
+				newsContainer.innerHTML = ''
+				snapshot.forEach(childSnapshot => {
+					const article = childSnapshot.val()
+					const newsArticle = document.createElement('article')
+					newsArticle.innerHTML = `
+                        <div>
+                            <h2>${article.title}</h2>
+                            <p>${article.content}</p>
+                            <time>${new Date(
+															article.date
+														).toLocaleString()}</time>
+                        </div>
+                    `
+					newsContainer.appendChild(newsArticle)
+				})
+			})
+			.catch(error => console.error('Error loading news: ', error))
+	}
 
-    closeAdminPanel.addEventListener('click', () => {
-        isAdmin = false;
-        adminPanel.style.display = 'none';
-        toggleAdminControls();
-    });
+	function loadGuides() {
+		guidesContainer.innerHTML = ''
+		db.ref('guides')
+			.once('value')
+			.then(snapshot => {
+				snapshot.forEach(childSnapshot => {
+					const guide = childSnapshot.val()
+					const guideArticle = document.createElement('article')
+					guideArticle.innerHTML = `
+                        <div class="question_context">
+                            <img src="pictures/Question.png" align="left" width="35">
+                            <p>${guide.question}</p>
+                        </div>
+                        <div class="and"><img src="pictures/and.png" align="" width="25"></div>
+                        <div class="question_context">
+                            <img src="pictures/Answer.png" align="left" width="35">
+                            <p>${guide.answer}</p>
+                        </div>
+                    `
+					guidesContainer.appendChild(guideArticle)
+				})
+			})
+			.catch(error => console.error('Error loading guides: ', error))
+	}
 
-    newsContainer.addEventListener('click', (e) => {
-        if (e.target.classList.contains('delete-btn')) {
-            const index = e.target.dataset.index;
-            const news = JSON.parse(localStorage.getItem('news')) || [];
-            news.splice(news.length - 1 - index, 1); // Reverse index
-            localStorage.setItem('news', JSON.stringify(news));
-            loadNews();
-        } else if (e.target.classList.contains('edit-btn')) {
-            const index = e.target.dataset.index;
-            const news = JSON.parse(localStorage.getItem('news')) || [];
-            const article = news[news.length - 1 - index]; // Reverse index
-            const newTitle = prompt("Редактировать заголовок:", article.title);
-            const newContent = prompt("Редактировать содержимое:", article.content);
-            if (newTitle !== null && newContent !== null) {
-                article.title = newTitle;
-                article.content = newContent;
-                localStorage.setItem('news', JSON.stringify(news));
-                loadNews();
-            }
-        }
-    });
+	if (clickArea) {
+		clickArea.addEventListener('click', () => {
+			const code = prompt('Введите код:')
+			if (code === '14887776665269') {
+				isAdmin = true
+				window.open('admin.html', 'Admin Panel', 'width=600,height=400')
+			}
+		})
+	}
 
-    function toggleAdminControls() {
-        document.querySelectorAll('.admin-controls').forEach(el => {
-            el.style.display = isAdmin ? 'flex' : 'none';
-        });
-    }
+	function showPage(pageToShow, pageToHide1, pageToHide2) {
+		pageToHide1.classList.add('fade-out')
+		pageToHide1.classList.remove('fade-in')
+		pageToHide2.classList.add('fade-out')
+		pageToHide2.classList.remove('fade-in')
 
-    function makeDraggable(element) {
-        let isMouseDown = false;
-        let offsetX, offsetY;
+		setTimeout(() => {
+			pageToHide1.style.display = 'none'
+			pageToHide1.classList.remove('fade-out')
+			pageToHide2.style.display = 'none'
+			pageToHide2.classList.remove('fade-out')
 
-        element.addEventListener('mousedown', (e) => {
-            if (e.target !== adminHeader) return;
-            isMouseDown = true;
-            offsetX = e.clientX - parseInt(window.getComputedStyle(element).left);
-            offsetY = e.clientY - parseInt(window.getComputedStyle(element).top);
-            adminHeader.style.cursor = 'grabbing';
-        });
+			pageToShow.style.display = 'block'
+			setTimeout(() => {
+				pageToShow.classList.add('fade-in')
+			}, 10)
+		}, 300)
+	}
 
-        document.addEventListener('mousemove', (e) => {
-            if (isMouseDown) {
-                element.style.left = `${e.clientX - offsetX}px`;
-                element.style.top = `${e.clientY - offsetY}px`;
-            }
-        });
+	const guidesButton = document.getElementById('guides')
+	const newsButton = document.getElementById('news')
+	const helpButton = document.getElementById('help')
 
-        document.addEventListener('mouseup', () => {
-            isMouseDown = false;
-            adminHeader.style.cursor = 'grab';
-        });
-    }
+	if (guidesButton) {
+		guidesButton.addEventListener('click', () => {
+			const guidespage = document.querySelector('.guidespage')
+			const helppage = document.querySelector('.helppage')
+			const newspage = document.querySelector('.newspage')
 
-    makeDraggable(adminPanel);
+			showPage(guidespage, helppage, newspage)
+			loadGuides()
+		})
+	}
 
-    loadNews();
-});
+	if (newsButton) {
+		newsButton.addEventListener('click', () => {
+			const helppage = document.querySelector('.helppage')
+			const guidespage = document.querySelector('.guidespage')
+			const newspage = document.querySelector('.newspage')
 
-const newspage = document.getElementById("newspage");
-const picturespage = document.getElementById("picturespage")
+			showPage(newspage, guidespage, helppage)
+		})
+	}
 
-document.getElementById("pictures").addEventListener("click", () => {
-    newspage.style.opacity = "0";
-    picturespage.style.opacity = "1";
-    picturespage.style.transform = "translateY(0)";
-});
+	if (helpButton) {
+		helpButton.addEventListener('click', () => {
+			const helppage = document.querySelector('.helppage')
+			const guidespage = document.querySelector('.guidespage')
+			const newspage = document.querySelector('.newspage')
 
-document.getElementById("news").addEventListener("click", () => {
-    newspage.style.opacity = "1";
-    picturespage.style.opacity = "0";
-    picturespage.style.transform = "translateY(100%)";
-});
+			showPage(helppage, guidespage, newspage)
+		})
+	}
+
+	loadNews()
+	loadGuides()
+})

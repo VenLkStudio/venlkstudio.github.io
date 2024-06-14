@@ -6,13 +6,278 @@
 
 body {
     background: #222123;
-    margin: 0; 
+    height: 100%;
+    margin: 0;
 }
 
-.picturespage {
-    opacity: 0;
-    transform: translateY(100%);
+.guidespage h1 {
+    color: #e7e7e7;
 }
+
+.helppage {
+    margin-left: 80px;
+}
+.helppage h1 {
+    margin-left: 15px;
+    color: #e7e7e7;
+}
+.helppage h3 {
+    margin-left: 25px;
+    color: #e7e7e7;
+}
+.helppage a {
+    margin-left: 40px;
+    display: inline-block;
+    text-decoration: none;
+    display: flex;
+    color: #a7a7a7;
+}
+.helppage a:hover {
+    width: 200px;
+    background-color: #000000;
+    transition: width 0.3s, background-color 0.3s; 
+}
+
+.guidespage {
+    margin-left: 80px;
+    position: relative;
+    width: calc(100% - 80px); /* Adjust width to take the full remaining space */
+    height: 100vh; /* Full viewport height */
+}
+.guidespage h1{
+    margin-left: 10px;
+}
+.guidespage iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none; /* Remove border for full coverage */
+}
+.guidespage li a {
+    display: inline-block;
+    color: #e7e7e7;
+    text-decoration: none;
+    display: flex;
+    margin-left: 20px;
+}
+.guidespage ul {
+    list-style-type: none;
+    margin-bottom: auto; 
+}
+.guidespage span {
+    margin-top: 2px;
+    margin-left: 5px;
+}
+.guidespage article {
+    background: #3b3b3b;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    justify-content: space-between;
+    overflow: hidden;
+    margin-top: 20px;
+}
+.guidespage img {
+    max-height: 100px;
+    display: block;
+    border-radius: 5px;
+    border: 2px solid #3b3b3b;
+    box-shadow: 3px 4px 10px 0px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+    margin-top: 2px;
+    margin-left: 2px;
+}
+.guidespage article .question_context {
+    background: #4b4b4b;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.and {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.guidespage article p {
+    margin-left: 10px;
+    color: #e7e7e7;
+}
+
+.picturespage.fade-out, .newspage.fade-out {
+    opacity: 0;
+    transform: translateY(20px);
+    display: block; /* Видимость при анимации fade-out */
+}
+
+.picturespage h2,
+.picturespage button{
+    opacity: 0;
+    margin-top: 1000px;
+    position: relative;
+}
+
+/* Начальные стили */
+#newspage {
+    display: block; /* Начальная страница отображается */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.guidespage, .helppage {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: none;
+}
+
+.guidespage.fade-in, .helppage.fade-in, .newspage.fade-in{
+    opacity: 1;
+    transform: translateY(0);
+    display: block;
+}
+
+.guidespage.fade-out, .helppage.fade-out, .newspage.fade-out {
+    opacity: 0;
+    transform: translateY(20px);
+    display: block;
+}
+
+
+/* Стили для страницы картинок */
+.picturespage {
+    position: relative;
+    padding: 20px;
+}
+
+.picturespage h1 {
+    color: #e7e7e7;
+    margin-left: 10px;
+}
+
+.picturespage #uploadImageBtn {
+    background-color: #28a745; /* Зеленый фон */
+    color: white; /* Белый текст */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.picturespage .images-container {
+    margin-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.picturespage .image-entry {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.picturespage .image-entry img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.picturespage .image-entry button,
+.picturespage .image-entry input {
+    margin-top: 10px;
+}
+
+.picturespage .image-entry input {
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+}
+
+/* Стили для страницы новостей */
+.newspage {
+    padding: 20px;
+}
+
+.newspage h1 {
+    color: #e7e7e7;
+    margin-left: 10px;
+}
+
+
+.picturespage {
+    opacity: 1;
+    transform: translateY(0);
+    display: none;
+    position: relative;
+    padding: 20px;
+}
+
+.picturespage h1 {
+    color: #e7e7e7;
+    margin-left: 10px;
+}
+
+.picturespage #uploadImageBtn {
+    background-color: #28a745; /* Green background */
+    color: white; /* White text */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.picturespage .images-container {
+    margin-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.picturespage .image-entry {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.picturespage .image-entry img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.picturespage .image-entry button,
+.picturespage .image-entry input {
+    margin-top: 10px;
+}
+
+.picturespage .image-entry input {
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+}
+
 
 .menu {
     display: flex;
