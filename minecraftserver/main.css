@@ -109,10 +109,12 @@ body {
     color: #e7e7e7;
 }
 
-.picturespage.fade-out, .newspage.fade-out {
-    opacity: 0;
-    transform: translateY(20px);
-    display: block; /* Видимость при анимации fade-out */
+
+.downloadpage {
+    margin-left: 80px;
+}
+.downloadpage h1 {
+    color: #e7e7e7;
 }
 
 .picturespage h2,
@@ -129,20 +131,20 @@ body {
     transform: translateY(0);
 }
 
-.guidespage, .helppage {
+.guidespage, .helppage, .downloadpage {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.3s ease, transform 0.3s ease;
     display: none;
 }
 
-.guidespage.fade-in, .helppage.fade-in, .newspage.fade-in{
+.guidespage.fade-in, .helppage.fade-in, .newspage.fade-in, .downloadpage.fade-in{
     opacity: 1;
     transform: translateY(0);
     display: block;
 }
 
-.guidespage.fade-out, .helppage.fade-out, .newspage.fade-out {
+.guidespage.fade-out, .helppage.fade-out, .newspage.fade-out, .downloadpage.fade-out {
     opacity: 0;
     transform: translateY(20px);
     display: block;
